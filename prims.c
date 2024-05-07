@@ -56,9 +56,12 @@ int main(){
         }
     }
 
+    int ans = 0;
     for(int i = 1; i <= n; i++){
+        ans += dist[i];
         printf("%d : %d\n", i, parent[i]);
     }
+    printf("%d\n", ans);
 
     return 0;
 

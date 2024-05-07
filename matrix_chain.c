@@ -19,18 +19,22 @@ int main(){
     for(int i = 0; i < n; i++){
         dp[i][i] = 0;
     }
+
     for(int len = 2; len < n; len++){
         for(int i = 1; i <= (n-len); i++){
             int j = i+len-1;
             dp[i][j] = inf;
             for(int k = i; k < j; k++){
-                dp[i][j] = min(dp[i][j], dp[i][k]+dp[k+1][j]+(A[i-1]*A[k]*A[j]));
+                int cost = dp[i][k] + dp[k+1][j] + (A[i-1]*A[k]*A[j]);
+                if(dp[i][j] > cost){
+                    dp[i][j] = cost;
+                }
             }
         }
     }
     for(int i = 1; i < n; i++){
         for(int j = 1; j < n; j++){
-            printf("%d ", dp[i][j]);
+            printf("%d\t", dp[i][j]);
         }
         printf("\n");
     }
