@@ -6,10 +6,10 @@ int f(char c){
     return (int)c - (int)'a' + 1;
 }
 
-int power(int x, int p){
+int power(int p){
     int ans = 1;
     for(int i = 1; i <= p; i++){
-        ans = (ans%mod * x%mod)%mod;
+        ans = (ans%mod * 10%mod)%mod;
     }
     return ans;
 }
@@ -34,12 +34,16 @@ int main(){
             printf("Occurrence Found at Position %d.\n", i);
         }
         if(i==n-m)break;
-        str_hash = (str_hash - (f(S[i])*power(10, m-1)))%mod;
+
+        str_hash = (str_hash - (f(S[i])*power(m-1)))%mod;
         if(str_hash<0)str_hash += mod;
+
         str_hash *= 10;
         str_hash %= mod;
+
         str_hash += f(S[i+m]);
         str_hash %= mod;
+
     }
 
     return 0;

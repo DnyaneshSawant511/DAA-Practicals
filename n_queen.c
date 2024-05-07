@@ -4,13 +4,16 @@
 #include <math.h>
 int n;
 
+//k represents row, i represents the column in which you want to place the queen
 bool safe(int k, int i, int pos[]){
     for(int j = 1; j < k; j++){
         if(pos[j]==i || abs(k-j)==abs(i-pos[j]))return false;
-    }
+        //(row-row) == (col-col) then false
+    }                        
     return true;
 }
 
+//k represents placing queen in the kth row
 void nqueen(int k, int pos[]){
     if(k==n+1){
         printf("Solution Found :- \n");
